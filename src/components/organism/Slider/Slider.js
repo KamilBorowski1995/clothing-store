@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import slider from "components/assets/img/slider-1-1300.jpg";
 import slider2 from "components/assets/img/slider-2-1300.jpg";
@@ -66,6 +66,15 @@ const StyledLeft = styled(StyledArrow)`
 
 const Slider = () => {
   const [activeSlide, setActiveSlide] = useState(1);
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      console.log("działam");
+      if (activeSlide !== 3) setActiveSlide(activeSlide + 1);
+      else setActiveSlide(1);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [activeSlide]);
 
   const handleSlider = (e) => {
     const active = e.target.id * 1;
