@@ -27,7 +27,7 @@ const Wrapper = styled.div`
     transform: translateY(100%);
     z-index: 1;
     background-color: ${theme.colors.first};
-    opacity: 0.2;
+    opacity: 0.1;
     transition: 0.6s ease-in-out;
   }
 `;

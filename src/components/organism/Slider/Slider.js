@@ -64,15 +64,28 @@ const StyledLeft = styled(StyledArrow)`
   left: -25px;
 `;
 
+const slidesListToProps = [
+  {
+    id: 1,
+    name: "zima",
+    image: slider,
+  },
+  {
+    id: 2,
+    name: "jesień",
+    image: slider2,
+  },
+];
+
 const Slider = () => {
+  const [listSlide, setListSlide] = useState(slidesListToProps);
   const [activeSlide, setActiveSlide] = useState(1);
 
   useEffect(() => {
     const id = setTimeout(() => {
-      console.log("działam");
-      if (activeSlide !== 3) setActiveSlide(activeSlide + 1);
+      if (activeSlide !== listSlide.length) setActiveSlide(activeSlide + 1);
       else setActiveSlide(1);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(id);
   }, [activeSlide]);
 
@@ -84,14 +97,13 @@ const Slider = () => {
   const handleArrow = (e) => {
     switch (e.target.id) {
       case "arrow-left":
-        if (activeSlide === 1) setActiveSlide(3);
+        if (activeSlide === 1) setActiveSlide(listSlide.length);
         else setActiveSlide((prev) => prev * 1 - 1);
         break;
       case "arrow-right":
-        if (activeSlide === 3) setActiveSlide(1);
+        if (activeSlide === listSlide.length) setActiveSlide(1);
         else setActiveSlide((prev) => prev * 1 + 1);
         break;
-
       default:
         break;
     }
@@ -101,14 +113,19 @@ const Slider = () => {
     <WrapperSection>
       <Wrapper>
         <WrapperSliderElements activeSlide={activeSlide}>
-          <img src={slider} alt="" />
-          <img src={slider2} alt="" />
-          <img src={slider} alt="" />
+          {listSlide.map(({ image, id, name }) => (
+            <img key={id} src={image} alt={name} />
+          ))}
         </WrapperSliderElements>
         <WrapperRings>
-          <Ring onClick={handleSlider} id={1} activeSlide={activeSlide} />
-          <Ring onClick={handleSlider} id={2} activeSlide={activeSlide} />
-          <Ring onClick={handleSlider} id={3} activeSlide={activeSlide} />
+          {listSlide.map((props, index) => (
+            <Ring
+              key={index + 1}
+              onClick={handleSlider}
+              id={index + 1}
+              activeSlide={activeSlide}
+            />
+          ))}
         </WrapperRings>
       </Wrapper>
       <StyledLeft

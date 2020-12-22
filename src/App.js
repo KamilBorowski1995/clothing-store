@@ -16,3 +16,7 @@ function App() {
 }
 
 export default App;
+
+// Do zrobienia
+//
+// 1. Slider - dodać bar postępu
