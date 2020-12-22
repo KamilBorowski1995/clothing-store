@@ -8,26 +8,29 @@ import IconCard from "../../assets/svg/icon-card.svg";
 import IconPerson from "../../assets/svg/icon-person.svg";
 
 const Wrapper = styled.div`
+  margin-left: 30px;
+`;
+
+const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
+  font-weight: ${theme.fontWeight.regular};
 `;
 
 const StyledImage = styled.img`
   height: 27px;
+  margin-right: 13px;
 `;
 
-const StyledLink = styled(Link)`
-  margin-left: 13px;
-  font-weight: ${theme.fontWeight.regular};
-`;
-
-const LinkIcon = ({ children, icon = "person" }) => {
+const LinkIcon = ({ children, to, icon = "person" }) => {
   const selectIcon = icon === "card" ? IconCard : IconPerson;
 
   return (
     <Wrapper>
-      <StyledImage src={selectIcon} />
-      <StyledLink href="/">{children}</StyledLink>
+      <StyledLink to={to}>
+        <StyledImage src={selectIcon} />
+        {children}
+      </StyledLink>
     </Wrapper>
   );
 };

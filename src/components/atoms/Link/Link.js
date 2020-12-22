@@ -11,11 +11,12 @@ const StyledLink = styled(LinkRouter)`
   font-weight: ${theme.fontWeight.bold};
   text-transform: uppercase;
   text-decoration: none;
+  padding: 5px 10px;
 `;
 
-const Link = ({ className, children }) => {
+const Link = ({ className, children, to }) => {
   return (
-    <StyledLink className={className} href="/">
+    <StyledLink className={className} to={to}>
       {children}
     </StyledLink>
   );

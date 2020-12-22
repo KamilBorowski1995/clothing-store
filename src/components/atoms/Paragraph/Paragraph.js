@@ -6,34 +6,29 @@ import { theme } from "theme/mainTheme";
 const StyledParagraph = styled.p`
   color: ${theme.fontColors.first};
   font-family: ${theme.fontFamily.primary};
-  font-size: ${theme.fontSize.m};
   font-weight: ${theme.fontWeight.regular};
+  font-size: ${theme.fontSize.m};
 
-  ${({ style }) =>
-    style === "nBold" &&
+  ${({ size }) =>
+    size === "bigReg" &&
     `
-      font-weight: ${theme.fontWeight.bold};
+      font-size: ${theme.fontSize.l}
     `}
-  ${({ style }) =>
-    style === "bug" &&
+  ${({ size }) =>
+    size === "small" &&
     `
-    font-size: ${theme.fontSize.l};
+      font-size: ${theme.fontSize.s}
     `}
-  ${({ style }) =>
-    style === "small" &&
+  ${({ size }) =>
+    size === "eSmall" &&
     `
-    font-size: ${theme.fontSize.s};
-    `}
-  ${({ style }) =>
-    style === "eSmall" &&
-    `
-    font-size: ${theme.fontSize.xs};
+      font-size: ${theme.fontSize.xs}
     `}
 `;
 
-const Paragraph = ({ className, children, style }) => {
+const Paragraph = ({ className, children, size }) => {
   return (
-    <StyledParagraph className={className} style={style}>
+    <StyledParagraph className={className} size={size}>
       {children}
     </StyledParagraph>
   );
