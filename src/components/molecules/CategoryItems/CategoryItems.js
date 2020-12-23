@@ -36,6 +36,7 @@ const WrapperTitleCategory = styled.div`
   justify-content: space-between;
   overflow: hidden;
   padding: 6px;
+  border-top: 1px solid ${theme.colors.second};
   border-bottom: 1px solid ${theme.colors.second};
   cursor: pointer;
 `;
@@ -54,8 +55,8 @@ const StyledItems = styled.div`
   animation: ${({ height }) => open(height)} 0.6s ease-in-out;
 `;
 
-const CategoryItems = ({ itemsProps = [], title = "" }) => {
-  const [active, setActive] = useState(false);
+const CategoryItems = ({ itemsProps = [], title = "", activeCat = false }) => {
+  const [active, setActive] = useState(activeCat);
   const [items, setItems] = useState(itemsProps);
   const [heightItems, setHeightItems] = useState(0);
 

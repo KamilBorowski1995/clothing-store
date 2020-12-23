@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -7,9 +8,7 @@ import MainTemplate from "templates/MainTemplate";
 import NavCategorySelect from "components/organism/NavCategorySelect";
 import ItemBox from "components/molecules/ItemBox";
 
-import product from "components/assets/img/product-1.jpg";
-import product2 from "components/assets/img/product-2.jpg";
-import product3 from "components/assets/img/product-3.jpg";
+import Loader from "components/atoms/Loader/Loader";
 import { server } from "config";
 
 const Wrapper = styled.div`
@@ -21,43 +20,57 @@ const Wrapper = styled.div`
 const WrapperProducts = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  grid-gap: 20px 0;
+  grid-gap: 30px 0;
   justify-items: center;
   /* background-color: red; */
 `;
 
-const ShopItemListPage = () => {
+const ShopItemListPage = (props) => {
   const [products, setProducts] = useState([]);
   const [loaded, setLoader] = useState(false);
 
+  const history = useHistory();
+
   useEffect(() => {
+    const type = props.match.params.type;
+    setProducts([]);
+    setLoader(false);
+
     axios
-      .get(`${server}/products`)
+      .get(`${server}/products`, {
+        params: {
+          type,
+        },
+      })
       .then(function (response) {
         setTimeout(() => {
           setLoader(true);
           setProducts(response.data);
+          console.log(response.data);
         }, 2000);
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       })
       .then(function () {
         // always executed
       });
-  }, []);
+  }, [history.location.pathname]);
 
   const mapItem = products.map(({ _id, name, cash, image }) => (
-    <ItemBox key={_id} title={name} cash={cash} image={image} />
+    <ItemBox
+      key={_id}
+      title={name}
+      cash={cash}
+      image={`${server}/products/${image}/image`}
+    />
   ));
 
   return (
     <MainTemplate>
       <Wrapper>
         <NavCategorySelect />
-        <WrapperProducts>{loaded ? mapItem : <p>Ładowanie</p>}</WrapperProducts>
-        )
+        <WrapperProducts>{loaded ? mapItem : <Loader />}</WrapperProducts>
       </Wrapper>
     </MainTemplate>
   );

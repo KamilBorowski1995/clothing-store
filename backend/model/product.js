@@ -13,6 +13,22 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: Object,
+    required: true,
+  },
+  color: {
+    type: Object,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Product", productSchema);

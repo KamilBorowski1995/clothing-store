@@ -53,7 +53,6 @@ const LinkWrapper = styled.div`
     max-width: 100%;
   }
 `;
-
 const IconLinkWrapper = styled.div`
   grid-area: IconLink;
   display: flex;

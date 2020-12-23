@@ -13,6 +13,11 @@ const NavCategorySelect = () => {
   return (
     <Wrapper>
       <CategoryItems
+        activeCat="true"
+        title="Kategoria"
+        itemsProps={["Spodnie", "Koszulki", "Skarpetki"]}
+      />
+      <CategoryItems
         title="Kolor"
         itemsProps={["biały", "czarny", "czerwony"]}
       />
