@@ -35,7 +35,6 @@ const ShopItemListPage = (props) => {
     const type = props.match.params.type;
     setProducts([]);
     setLoader(false);
-
     axios
       .get(`${server}/products`, {
         params: {
@@ -46,8 +45,7 @@ const ShopItemListPage = (props) => {
         setTimeout(() => {
           setLoader(true);
           setProducts(response.data);
-          console.log(response.data);
-        }, 2000);
+        }, 1000 * 2);
       })
       .catch(function (error) {
         console.log(error);
@@ -56,6 +54,8 @@ const ShopItemListPage = (props) => {
         // always executed
       });
   }, [history.location.pathname]);
+
+  // const search = console.log(products);
 
   const mapItem = products.map(({ _id, name, cash, image }) => (
     <ItemBox
@@ -66,11 +66,43 @@ const ShopItemListPage = (props) => {
     />
   ));
 
+  const renderElements =
+    mapItem.length > 0 ? mapItem : <p>Brak pasujących elementów</p>;
+
+  const handleSelect = (selectItems) => {
+    const type = props.match.params.type;
+    setProducts([]);
+    setLoader(false);
+    axios
+      .get(`${server}/products/search`, {
+        params: {
+          type,
+          title: selectItems.title,
+          select: selectItems.select,
+        },
+      })
+      .then(function (response) {
+        setTimeout(() => {
+          console.log(response);
+          setLoader(true);
+          setProducts(response.data);
+        }, 1000 * 2);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  };
+
   return (
     <MainTemplate>
       <Wrapper>
-        <NavCategorySelect />
-        <WrapperProducts>{loaded ? mapItem : <Loader />}</WrapperProducts>
+        <NavCategorySelect select={handleSelect} />
+        <WrapperProducts>
+          {loaded ? renderElements : <Loader />}
+        </WrapperProducts>
       </Wrapper>
     </MainTemplate>
   );

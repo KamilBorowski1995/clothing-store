@@ -1,8 +1,10 @@
 const router = require("express").Router();
+const multer = require("multer");
+
 const Product = require("../model/product");
 const Incident = require("../model/incident");
 
-const multer = require("multer");
+const { findProduct } = require("../function/findProduct");
 
 //
 //
@@ -75,7 +77,6 @@ router.post("/add", async (req, res) => {
     type: data.type,
     category: data.category,
     size: data.size,
-    color: data.color,
   });
   try {
     const saveProducts = await products.save();
@@ -91,6 +92,16 @@ router.get("/", async (req, res) => {
   const products = await Product.find({ type: data });
 
   res.send(products);
+});
+
+router.get("/search", async (req, res) => {
+  const data = req.query;
+
+  const products = await Product.find({ type: data.type });
+
+  if (!data.select) return res.send(products);
+  const search = await findProduct(products, data);
+  res.send(search);
 });
 
 module.exports = router;

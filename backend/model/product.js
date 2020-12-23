@@ -25,10 +25,6 @@ const productSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
-  color: {
-    type: Object,
-    required: true,
-  },
 });
 
 module.exports = mongoose.model("Product", productSchema);

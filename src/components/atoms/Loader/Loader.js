@@ -5,16 +5,16 @@ import { theme } from "theme/mainTheme";
 
 const rotate = keyframes`
   from {
-          transform: rotate(75deg)  ;
+          transform: rotate( 0deg)  ;
       }
 
-      50% {
-          transform: rotate(-75deg)  ;
+      90% {
+          transform: rotate(360deg)  ;
       }
 
 
   to {
-    transform: rotate(75deg);
+    transform: rotate(360deg)
   }
 `;
 const WrapperLoader = styled.div`
@@ -24,8 +24,6 @@ const WrapperLoader = styled.div`
   border-radius: 50%;
   position: relative;
   opacity: 0.5;
-  transform: rotate(90deg);
-  animation: ${rotate} 1.5s ease-in-out infinite;
 `;
 
 const LoaderBall = styled.div`
@@ -36,13 +34,25 @@ const LoaderBall = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  transform-origin: 0 -30px;
+  animation: ${rotate} 2s ease-in-out infinite;
   background-color: ${theme.colors.third};
+`;
+
+const One = styled(LoaderBall)``;
+const Two = styled(LoaderBall)`
+  animation-delay: 0.15s;
+`;
+const Tree = styled(LoaderBall)`
+  animation-delay: 0.3s;
 `;
 
 const Loader = () => {
   return (
     <WrapperLoader>
-      <LoaderBall></LoaderBall>
+      <One />
+      <Two />
+      <Tree />
     </WrapperLoader>
   );
 };
