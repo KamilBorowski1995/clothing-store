@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import slider from "components/assets/img/slider-1-1300.jpg";
 import slider2 from "components/assets/img/slider-2-1300.jpg";
 
@@ -114,8 +114,8 @@ const Slider = () => {
       <Wrapper>
         <WrapperSliderElements activeSlide={activeSlide}>
           {listSlide.map(({ image, id, name }) => (
-            <a href="/">
-              <img key={id} src={image} alt={name} />
+            <a href="/" key={id + name}>
+              <img src={image} alt={name} />
             </a>
           ))}
         </WrapperSliderElements>

@@ -25,13 +25,13 @@ const HomePage = () => {
     <MainTemplate>
       <Slider />
       <WrapperLinkImage>
-        <LinkImage link="he" image={man}>
+        <LinkImage link="/shop/he" image={man}>
           On
         </LinkImage>
-        <LinkImage link="she" image={woman}>
+        <LinkImage link="/shop/she" image={woman}>
           Ona
         </LinkImage>
-        <LinkImage link="child" image={child}>
+        <LinkImage link="/shop/child" image={child}>
           Dziecko
         </LinkImage>
       </WrapperLinkImage>

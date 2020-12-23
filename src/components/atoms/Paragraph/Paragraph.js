@@ -15,10 +15,15 @@ const StyledParagraph = styled.p`
     font-weight: ${theme.fontWeight.semiBold};
     `}
 
+${({ size }) =>
+  size === "bold" &&
+  `
+    font-weight: ${theme.fontWeight.bold};
+    `}
+
   ${({ size }) =>
     size === "bigReg" &&
-    `
-      font-size: ${theme.fontSize.l}
+    `      font-size: ${theme.fontSize.l}
     `}
   ${({ size }) =>
     size === "small" &&

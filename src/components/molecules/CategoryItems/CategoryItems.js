@@ -61,10 +61,12 @@ const CategoryItems = ({ itemsProps = [], title = "" }) => {
 
   useEffect(() => {
     setHeightItems(items.length * 18);
-  });
+  }, [items]);
 
   const itemsMap = items.map((item) => (
-    <Paragraph size="eSmall">{item}</Paragraph>
+    <Paragraph key={item} size="eSmall">
+      {item}
+    </Paragraph>
   ));
 
   return (
