@@ -15,8 +15,10 @@ const Wrapper = styled.div`
   gap: 10px;
   grid-template-areas: "Logo NavLink NavLink NavLink NavLink NavLink NavLink IconLink";
   justify-content: space-between;
+  align-items: center;
   background-color: white;
-  padding: 13px 60px;
+  /* padding: 13px 60px; */
+  padding: 10px 60px;
   box-shadow: 0 -2px 6px 0 ${theme.colors.first};
   z-index: 99;
   @media (max-width: 950px) {
@@ -30,11 +32,15 @@ const StyledLink = styled(LinkRouter)`
   grid-area: Logo;
   /* margin-right: 30px; */
   min-width: 60px;
-  height: 45px;
+  height: 30px;
+  /* height: 45px; */
   overflow: hidden;
 `;
 
-const StyledImg = styled.img``;
+const StyledImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
 
 const LinkWrapper = styled.div`
   grid-area: NavLink;
@@ -62,10 +68,10 @@ const Nav = () => {
       </StyledLink>
 
       <LinkWrapper>
-        <Link to="/he">On</Link>
-        <Link to="/she">Ona</Link>
-        <Link to="/child">Dziecko</Link>
-        <Link to="/sale">Wyprzedaż</Link>
+        <Link to="/shop/he">On</Link>
+        <Link to="/shop/she">Ona</Link>
+        <Link to="/shop/child">Dziecko</Link>
+        <Link to="/shop/sale">Wyprzedaż</Link>
         {/* <Link to="/news">Nowości</Link> */}
       </LinkWrapper>
       <IconLinkWrapper>

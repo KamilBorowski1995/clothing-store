@@ -10,6 +10,12 @@ const StyledParagraph = styled.p`
   font-size: ${theme.fontSize.m};
 
   ${({ size }) =>
+    size === "semiBold" &&
+    `
+    font-weight: ${theme.fontWeight.semiBold};
+    `}
+
+  ${({ size }) =>
     size === "bigReg" &&
     `
       font-size: ${theme.fontSize.l}
@@ -22,7 +28,7 @@ const StyledParagraph = styled.p`
   ${({ size }) =>
     size === "eSmall" &&
     `
-      font-size: ${theme.fontSize.xs}
+      font-size: ${theme.fontSize.hxs}
     `}
 `;
 

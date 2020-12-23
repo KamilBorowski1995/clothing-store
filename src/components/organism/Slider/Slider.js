@@ -114,7 +114,9 @@ const Slider = () => {
       <Wrapper>
         <WrapperSliderElements activeSlide={activeSlide}>
           {listSlide.map(({ image, id, name }) => (
-            <img key={id} src={image} alt={name} />
+            <a href="/">
+              <img key={id} src={image} alt={name} />
+            </a>
           ))}
         </WrapperSliderElements>
         <WrapperRings>

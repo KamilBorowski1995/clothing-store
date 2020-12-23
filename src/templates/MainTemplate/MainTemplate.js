@@ -6,7 +6,7 @@ import Nav from "components/organism/Nav";
 const WrapperContent = styled.div`
   max-width: 1300px;
   margin: 0 auto;
-  padding-top: 70px;
+  padding-top: 57px;
 `;
 
 const MainTemplate = ({ children }) => {
