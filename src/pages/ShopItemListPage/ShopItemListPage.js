@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import MainTemplate from "templates/MainTemplate";
 
@@ -9,6 +10,7 @@ import ItemBox from "components/molecules/ItemBox";
 import product from "components/assets/img/product-1.jpg";
 import product2 from "components/assets/img/product-2.jpg";
 import product3 from "components/assets/img/product-3.jpg";
+import { server } from "config";
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -21,95 +23,41 @@ const WrapperProducts = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   grid-gap: 20px 0;
   justify-items: center;
+  /* background-color: red; */
 `;
 
-const listProduct = [
-  {
-    id: 1,
-    title: "bolerko",
-    cash: 99.99,
-    image: product,
-  },
-  {
-    id: 2,
-    title: "Sukienka",
-    cash: 199.99,
-    image: product2,
-  },
-  {
-    id: 3,
-    title: "Spodnie",
-    cash: 129.99,
-    image: product3,
-  },
-  {
-    id: 7,
-    title: "Spodnie",
-    cash: 129.99,
-    image: product3,
-  },
-  {
-    id: 6,
-    title: "Sukienka",
-    cash: 199.99,
-    image: product2,
-  },
-  {
-    id: 5,
-    title: "bolerko",
-    cash: 99.99,
-    image: product,
-  },
-  {
-    id: 1,
-    title: "bolerko",
-    cash: 99.99,
-    image: product,
-  },
-  {
-    id: 2,
-    title: "Sukienka",
-    cash: 199.99,
-    image: product2,
-  },
-  {
-    id: 3,
-    title: "Spodnie",
-    cash: 129.99,
-    image: product3,
-  },
-  {
-    id: 7,
-    title: "Spodnie",
-    cash: 129.99,
-    image: product3,
-  },
-  {
-    id: 6,
-    title: "Sukienka",
-    cash: 199.99,
-    image: product2,
-  },
-  {
-    id: 5,
-    title: "bolerko",
-    cash: 99.99,
-    image: product,
-  },
-];
-
 const ShopItemListPage = () => {
-  const [products, setProducts] = useState(listProduct);
+  const [products, setProducts] = useState([]);
+  const [loaded, setLoader] = useState(false);
 
-  const mapItem = products.map(({ id, title, cash, image }) => (
-    <ItemBox key={id} title={title} cash={cash} image={image} />
+  useEffect(() => {
+    axios
+      .get(`${server}/products`)
+      .then(function (response) {
+        setTimeout(() => {
+          setLoader(true);
+          setProducts(response.data);
+        }, 2000);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+
+  const mapItem = products.map(({ _id, name, cash, image }) => (
+    <ItemBox key={_id} title={name} cash={cash} image={image} />
   ));
 
   return (
     <MainTemplate>
       <Wrapper>
         <NavCategorySelect />
-        <WrapperProducts>{mapItem}</WrapperProducts>
+        <WrapperProducts>{loaded ? mapItem : <p>Ładowanie</p>}</WrapperProducts>
+        )
       </Wrapper>
     </MainTemplate>
   );
