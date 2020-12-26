@@ -15,7 +15,7 @@ const MainTemplate = ({ children }) => {
       <Nav />
       <WrapperContent>
         {children}
-        <p>Footer</p>
+        {/* <p>Footer</p> */}
       </WrapperContent>
     </div>
   );

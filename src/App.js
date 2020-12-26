@@ -25,3 +25,4 @@ export default App;
 // Do zrobienia
 //
 // 1. Slider - dodać bar postępu i linki
+// 2. Backend - naprawa wyszukiwania elementów

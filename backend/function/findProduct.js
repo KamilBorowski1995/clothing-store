@@ -5,6 +5,7 @@ const findProduct = async (products, data) => {
     case "size":
       await products.filter((product) => {
         if (product.size !== undefined) {
+          console.log(product);
           for (const [key, value] of Object.entries(product.size)) {
             data.select.forEach((item) => {
               if (item.toLowerCase() === key && value > 0) {

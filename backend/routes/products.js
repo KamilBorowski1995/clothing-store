@@ -74,6 +74,7 @@ router.post("/add", async (req, res) => {
     name: data.name,
     cash: data.cash,
     image: data.image,
+    pictures: data.pictures,
     type: data.type,
     category: data.category,
     size: data.size,
@@ -91,6 +92,12 @@ router.get("/", async (req, res) => {
 
   const products = await Product.find({ type: data });
 
+  res.send(products);
+});
+
+router.get("/product", async (req, res) => {
+  const id = req.query.id;
+  const products = await Product.find({ _id: id });
   res.send(products);
 });
 

@@ -17,13 +17,12 @@ const rotate = keyframes`
     transform: rotate(360deg)
   }
 `;
-const Wrapper = styled.div`
-  min-height: 100vh;
-`;
+const Wrapper = styled.div``;
 
 const WrapperLoader = styled.div`
   width: 100px;
   height: 100px;
+  margin: 10% auto;
   background-color: ${theme.colors.second};
   border-radius: 50%;
   position: relative;
