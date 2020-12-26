@@ -35,7 +35,6 @@ const NavCategorySelect = ({ select }) => {
     <Wrapper>
       <CategoryItems
         onClick={onClick}
-        activeCat="true"
         title="Kategoria"
         itemsProps={["Spodnie", "Koszulki", "Skarpetki"]}
       />

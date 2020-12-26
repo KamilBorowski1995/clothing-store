@@ -22,7 +22,7 @@ const WrapperProducts = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   grid-gap: 30px 0;
   justify-items: center;
-  /* background-color: red; */
+  min-height: 100vh;
 `;
 
 const ShopItemListPage = (props) => {
@@ -32,6 +32,7 @@ const ShopItemListPage = (props) => {
   const history = useHistory();
 
   useEffect(() => {
+    document.title = ` ${props.match.params.type}`;
     const type = props.match.params.type;
     setProducts([]);
     setLoader(false);
@@ -55,11 +56,16 @@ const ShopItemListPage = (props) => {
       });
   }, [history.location.pathname]);
 
-  // const search = console.log(products);
+  const handleClickBox = (e, id) => {
+    const type = props.match.params.type;
+    history.push(`/shop/${type}/${id}`);
+  };
 
   const mapItem = products.map(({ _id, name, cash, image }) => (
     <ItemBox
+      onClick={handleClickBox}
       key={_id}
+      id={_id}
       title={name}
       cash={cash}
       image={`${server}/products/${image}/image`}

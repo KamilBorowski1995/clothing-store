@@ -19,13 +19,35 @@ const open = (height) => keyframes`
   }
 `;
 
+const close = (height) => keyframes`
+  from {
+    height: ${height}px;
+    transform: scaleY(1) ;
+      }
+
+  to {
+    height: 0;
+    transform: scaleY(0)  ;
+  }
+`;
+
 const rotate = keyframes`
   from {
-          transform: rotate(0)  ;
+          transform: rotate(0deg)  ;
       }
 
   to {
     transform: rotate(180deg);
+  }
+`;
+
+const rotateRevers = keyframes`
+  from {
+          transform: rotate(180deg)  ;
+      }
+
+  to {
+    transform: rotate(0deg);
   }
 `;
 
@@ -44,23 +66,39 @@ const WrapperTitleCategory = styled.div`
 `;
 
 const StyledArrow = styled.img`
-  animation: ${(props) =>
-    props.active
+  transform: rotate(180deg);
+  animation: ${({ active }) =>
+    active
       ? css`
-          ${rotate} .6s ease-in-out forwards;
+          ${rotate} .6s ease-in-out forwards
         `
-      : ""};
+      : css`
+          ${rotateRevers} .6s ease-in-out forwards
+        `};
 `;
 
 const StyledItems = styled.div`
   transform-origin: top left;
-  animation: ${({ height }) => open(height)} 0.6s ease-in-out;
+
+  animation: ${({ height, active }) =>
+    active
+      ? css`
+          ${open(height)} .6s ease-in-out forwards
+        `
+      : css`
+          ${close(height)} .6s ease-in-out forwards
+        `};
+`;
+
+const StyledParagtaph = styled(Paragraph)`
+  text-align: right;
+  padding: 5px 20px;
+  cursor: pointer;
 `;
 
 const ItemsWrapper = styled.div`
   display: flex;
   align-items: center;
-  cursor: pointer;
 `;
 const StyledSquare = styled.div`
   width: 14px;
@@ -68,12 +106,13 @@ const StyledSquare = styled.div`
   border: 1px solid ${theme.colors.first};
   margin: 5px;
   background-color: ${({ selected }) => selected && theme.colors.first};
+  cursor: pointer;
 `;
 
 const CategoryItems = ({
   itemsProps = [],
   title = "",
-  activeCat = false,
+  activeCat = true,
   onClick,
 }) => {
   const [active, setActive] = useState(activeCat);
@@ -84,7 +123,7 @@ const CategoryItems = ({
   const history = useHistory();
 
   useEffect(() => {
-    setHeightItems(items.length * 18);
+    setHeightItems(items.length * 24 + 24 + 10);
     itemsProps.forEach((item) => {
       dispatch({
         type: "ADD_SELECT",
@@ -122,8 +161,15 @@ const CategoryItems = ({
 
         <StyledArrow active={active} src={arrow} alt="Strzałka nawigacji" />
       </WrapperTitleCategory>
-      {active && <StyledItems height={heightItems}>{itemsMap}</StyledItems>}
-      <p onClick={(e) => onClick(e, state, title)}>Zapissz</p>
+      <StyledItems active={active} height={heightItems}>
+        {itemsMap}
+        <StyledParagtaph
+          size="eSmall"
+          onClick={(e) => onClick(e, state, title)}
+        >
+          Zapisz
+        </StyledParagtaph>
+      </StyledItems>
     </Wrapper>
   );
 };

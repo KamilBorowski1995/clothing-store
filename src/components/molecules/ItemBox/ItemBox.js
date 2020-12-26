@@ -33,10 +33,10 @@ const StyledTitle = styled(Paragraph)`
   padding: 7px 0;
 `;
 
-const ItemBox = ({ image, title, cash }) => {
+const ItemBox = ({ image, title, cash, onClick, id }) => {
   return (
     <Wrapper>
-      <WrapperImg>
+      <WrapperImg onClick={(e) => onClick(e, id)}>
         <StyledImg src={image} alt="produkt" />
       </WrapperImg>
 

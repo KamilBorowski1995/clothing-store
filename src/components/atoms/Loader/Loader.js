@@ -17,6 +17,10 @@ const rotate = keyframes`
     transform: rotate(360deg)
   }
 `;
+const Wrapper = styled.div`
+  min-height: 100vh;
+`;
+
 const WrapperLoader = styled.div`
   width: 100px;
   height: 100px;
@@ -49,11 +53,13 @@ const Tree = styled(LoaderBall)`
 
 const Loader = () => {
   return (
-    <WrapperLoader>
-      <One />
-      <Two />
-      <Tree />
-    </WrapperLoader>
+    <Wrapper>
+      <WrapperLoader>
+        <One />
+        <Two />
+        <Tree />
+      </WrapperLoader>
+    </Wrapper>
   );
 };
 

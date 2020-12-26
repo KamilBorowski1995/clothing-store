@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import ErrorPage from "pages/ErrorPage";
 import ShopItemListPage from "pages/ShopItemListPage";
+import ItemPage from "pages/ItemPage";
 
 function App() {
   return (
@@ -11,8 +12,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop/:type" component={ShopItemListPage} />
-        <Route exact path="/shop/:type/:category" component={ErrorPage} />
-        <Route exact path="/shop/:type/:category/:id" component={ErrorPage} />
+        <Route exact path="/shop/:type/:id" component={ItemPage} />
+        {/* <Route exact path="/shop/:type/:category/:id" component={ErrorPage} /> */}
         <Route path="*" component={ErrorPage} />
       </Switch>
     </BrowserRouter>

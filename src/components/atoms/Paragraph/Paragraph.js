@@ -37,9 +37,9 @@ ${({ size }) =>
     `}
 `;
 
-const Paragraph = ({ className, children, size }) => {
+const Paragraph = ({ className, children, size, onClick }) => {
   return (
-    <StyledParagraph className={className} size={size}>
+    <StyledParagraph className={className} size={size} onClick={onClick}>
       {children}
     </StyledParagraph>
   );
