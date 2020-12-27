@@ -35,6 +35,22 @@ ${({ size }) =>
     `
       font-size: ${theme.fontSize.hxs}
     `}
+  ${({ size }) =>
+    size === "l" &&
+    `
+      font-size: ${theme.fontSize.l}
+    `}
+  ${({ size }) =>
+    size === "xl" &&
+    `
+      font-size: ${theme.fontSize.xl}
+    `}
+
+  ${({ size }) =>
+    size === "xxl" &&
+    `
+      font-size: ${theme.fontSize.xxl}
+    `}
 `;
 
 const Paragraph = ({ className, children, size, onClick }) => {

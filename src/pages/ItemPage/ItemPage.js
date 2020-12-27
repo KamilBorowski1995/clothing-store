@@ -8,9 +8,11 @@ import { server } from "config";
 
 import Loader from "components/atoms/Loader/Loader";
 import SliderImageSinglePage from "components/organism/SliderImageSinglePage";
-import Paragraph from "components/atoms/Paragraph";
+
+import ProductPanel from "components/organism/ProductPanel";
 
 const Wrapper = styled.div`
+  margin-top: 30px;
   display: grid;
   justify-content: space-between;
   grid-template-columns: 45% 45%;
@@ -55,10 +57,7 @@ const ItemPage = (props) => {
             {product.length > 0 ? (
               <Wrapper>
                 <SliderImageSinglePage product={product[0].pictures} />
-                <div>
-                  <Paragraph>{product[0].name}</Paragraph>
-                  <Paragraph>{product[0].cash}</Paragraph>
-                </div>
+                <ProductPanel product={product[0]} />
               </Wrapper>
             ) : null}
           </>
