@@ -11,11 +11,21 @@ import SliderImageSinglePage from "components/organism/SliderImageSinglePage";
 
 import ProductPanel from "components/organism/ProductPanel";
 
+import Paragraph from "components/atoms/Paragraph";
+
 const Wrapper = styled.div`
   margin-top: 30px;
   display: grid;
   justify-content: space-between;
   grid-template-columns: 45% 45%;
+`;
+
+const WrapperSectionParagraph = styled.div`
+  margin-top: 30px;
+`;
+
+const StyledHeader = styled(Paragraph)`
+  padding: 20px 0;
 `;
 
 const ItemPage = (props) => {
@@ -58,6 +68,25 @@ const ItemPage = (props) => {
               <Wrapper>
                 <SliderImageSinglePage product={product[0].pictures} />
                 <ProductPanel product={product[0]} />
+                <WrapperSectionParagraph>
+                  <StyledHeader size="xl">Lorem ipsum</StyledHeader>
+                  <Paragraph>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ullam sequi excepturi doloremque nulla iusto voluptate
+                    mollitia rem omnis nobis qui. Aliquid minus repellendus
+                    corporis, adipisci quis deserunt nihil quae, delectus cumque
+                    laudantium accusantium voluptatum voluptate eaque quos?
+                    Aliquid consectetur, dolore doloribus nam ratione sed
+                    voluptate maxime delectus, at hic doloremque nobis libero.
+                    Minima iure officiis culpa molestiae vero modi neque cum
+                    dolores aut. Blanditiis distinctio eveniet corporis
+                    voluptatem. Error laborum id cupiditate fugit amet quae
+                    doloribus, fuga praesentium minima voluptatum harum nam
+                    veritatis. Doloremque vero quasi consequatur necessitatibus
+                    adipisci nemo, quae tempore quam dolorum labore natus dolore
+                    illo commodi ab!
+                  </Paragraph>
+                </WrapperSectionParagraph>
               </Wrapper>
             ) : null}
           </>

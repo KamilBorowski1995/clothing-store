@@ -5,6 +5,12 @@ import Paragraph from "components/atoms/Paragraph";
 import Button from "components/atoms/Button";
 import { theme } from "theme/mainTheme";
 
+const Wrapper = styled.div`
+  position: sticky;
+  top: 87px;
+  height: 100%;
+`;
+
 const SectionWrapper = styled.div`
   padding: 20px 0 40px;
   ${({ border }) =>
@@ -47,7 +53,7 @@ const ProductPanel = ({ product }) => {
     ));
 
   return (
-    <div>
+    <Wrapper>
       <SectionWrapper>
         <Paragraph size="xl">{product.name}</Paragraph>
         <Paragraph size="l">{product.cash} PLN</Paragraph>
@@ -84,7 +90,7 @@ const ProductPanel = ({ product }) => {
         </QuantityWrapper>
         <Button>Dodaj do koszyka</Button>
       </SectionWrapper>
-    </div>
+    </Wrapper>
   );
 };
 
