@@ -33,6 +33,7 @@ router.post(
       // const incident = await Incident.findById(req.body.id);
       const incident = new Incident({
         image: req.file.buffer,
+        name: req.file.originalname,
       });
       const newincident = await incident.save();
       res.send(newincident);
@@ -68,7 +69,8 @@ router.get("/:id/image", async (req, res) => {
 //
 
 router.post("/add", async (req, res) => {
-  const data = req.body;
+  const data = req.body.params.item;
+  console.log(data);
 
   const products = new Product({
     name: data.name,

@@ -74,6 +74,7 @@ const Nav = () => {
         {/* <Link to="/news">Nowości</Link> */}
       </LinkWrapper>
       <IconLinkWrapper>
+        <Link to="/api/worker">Panel Admina</Link>
         <LinkIcon to="/shoppingList" icon="card">
           Lista zakupów
         </LinkIcon>

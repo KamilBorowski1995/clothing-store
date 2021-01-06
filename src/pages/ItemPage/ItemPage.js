@@ -16,8 +16,8 @@ import Paragraph from "components/atoms/Paragraph";
 const Wrapper = styled.div`
   margin-top: 30px;
   display: grid;
-  justify-content: space-between;
-  grid-template-columns: 45% 45%;
+  justify-content: space-around;
+  grid-template-columns: 40% 40%;
 `;
 
 const WrapperSectionParagraph = styled.div`

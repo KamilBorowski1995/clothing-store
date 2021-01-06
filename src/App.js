@@ -5,6 +5,8 @@ import HomePage from "pages/HomePage";
 import ErrorPage from "pages/ErrorPage";
 import ShopItemListPage from "pages/ShopItemListPage";
 import ItemPage from "pages/ItemPage";
+import ApiWorker from "pages/ApiWorker";
+import AddItemPage from "pages/AddItemPage";
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop/:type" component={ShopItemListPage} />
         <Route exact path="/shop/:type/:id" component={ItemPage} />
-        {/* <Route exact path="/shop/:type/:category/:id" component={ErrorPage} /> */}
+
+        <Route exact path="/api/worker" component={ApiWorker} />
+        <Route exact path="/api/worker/additem" component={AddItemPage} />
         <Route path="*" component={ErrorPage} />
       </Switch>
     </BrowserRouter>
