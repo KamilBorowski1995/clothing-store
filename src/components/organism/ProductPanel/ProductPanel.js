@@ -36,6 +36,7 @@ const ProductPanel = ({ product }) => {
 
   const handleClick = (e, index) => {
     setActiveSize(index);
+    setQuantity(1);
   };
 
   const sizeMap =
@@ -80,7 +81,9 @@ const ProductPanel = ({ product }) => {
             <Button
               type="clothing"
               onClick={() => {
-                setQuantity((prevValue) => prevValue + 1);
+                if (product.size[activeSize].amount > quantity) {
+                  setQuantity((prevValue) => prevValue + 1);
+                }
               }}
             >
               +

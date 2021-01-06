@@ -21,7 +21,7 @@ const StyledLabelInputfile = styled.label`
 
 const StyledForm = styled.form`
   display: grid;
-  grid-template-columns: 30% 40% 30%;
+  grid-template-columns: 30% 70%;
   padding: 5px;
   align-items: center;
 `;
@@ -38,18 +38,23 @@ const StyledButton = styled.button`
 const UploadImage = ({ title, fnEdit }) => {
   const fileInput = useRef();
 
-  const [uploadImage, setUploadImage] = useState(null);
   const [uploadImageName, setUploadImageName] = useState("");
   const [uploadImageLoaderActive, setUploadImageLoaderActive] = useState(false);
   const [successUploadImage, setSuccessUploadImage] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const editImageName = (name) => {
+    if (name.length > 20) {
+      const editName = name.slice(0, 20);
+      return `${editName}...`;
+    } else {
+      return name;
+    }
+  };
 
+  const handleSelectUploadImage = (e) => {
     setUploadImageLoaderActive(true);
-
     const formdata = new FormData();
-    formdata.append("upload", uploadImage);
+    formdata.append("upload", e.target.files[0]);
 
     const profileData = {
       headers: { "content-type": "multipart/form-data" },
@@ -74,22 +79,8 @@ const UploadImage = ({ title, fnEdit }) => {
       });
   };
 
-  const editImageName = (name) => {
-    if (name.length > 20) {
-      const editName = name.slice(0, 20);
-      return `${editName}...`;
-    } else {
-      return name;
-    }
-  };
-
-  const handleSelectUploadImage = (e) => {
-    setUploadImageName(e.target.files[0].name);
-    setUploadImage(e.target.files[0]);
-  };
-
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm>
       <Paragraph>{title}:</Paragraph>
       <StyledLabelInputfile>
         <StyledInputFile
@@ -104,9 +95,6 @@ const UploadImage = ({ title, fnEdit }) => {
           : editImageName(uploadImageName)}
       </StyledLabelInputfile>
       {uploadImageLoaderActive && <Loader />}
-      {successUploadImage === false && (
-        <StyledButton type="submit">Dodaj</StyledButton>
-      )}
     </StyledForm>
   );
 };
