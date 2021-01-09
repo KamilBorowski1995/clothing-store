@@ -64,7 +64,11 @@ const Button = ({
           {children}
         </StyledButtonSize>
       ) : (
-        <StyledButtonText disabled={disabled} className={className}>
+        <StyledButtonText
+          onClick={onClick}
+          disabled={disabled}
+          className={className}
+        >
           {children}
         </StyledButtonText>
       )}

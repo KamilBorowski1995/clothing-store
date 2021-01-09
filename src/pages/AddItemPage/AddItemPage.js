@@ -35,7 +35,11 @@ const AddItemPage = () => {
       image: imageID,
       type: inputType,
       category: "spodnie",
-      pictures: [imageID, imageID],
+      pictures: [
+        imageID,
+        "5fe9c9ba94b0524b34e2155c",
+        "5ff57e839d281943fc1dab08",
+      ],
       size: [
         { name: "S", amount: sizeS },
         { name: "XS", amount: sizeXS },

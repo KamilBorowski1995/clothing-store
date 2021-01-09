@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import HomePage from "pages/HomePage";
@@ -7,8 +7,15 @@ import ShopItemListPage from "pages/ShopItemListPage";
 import ItemPage from "pages/ItemPage";
 import ApiWorker from "pages/ApiWorker";
 import AddItemPage from "pages/AddItemPage";
+import { localstorageFunction } from "function/localstorage";
 
 function App() {
+  useEffect(() => {
+    const localBasket = localStorage.getItem("basket");
+    if (!localBasket) {
+      localstorageFunction.set("basket", []);
+    }
+  }, []);
   return (
     <BrowserRouter>
       <Switch>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Paragraph from "components/atoms/Paragraph";
 import Button from "components/atoms/Button";
 import { theme } from "theme/mainTheme";
+import { localstorageFunction } from "function/localstorage";
 
 const Wrapper = styled.div`
   position: sticky;
@@ -53,6 +54,10 @@ const ProductPanel = ({ product }) => {
       </Button>
     ));
 
+  const handeAddProductToBasket = () => {
+    localstorageFunction.add("basket", product._id, quantity, activeSize);
+  };
+
   return (
     <Wrapper>
       <SectionWrapper>
@@ -91,7 +96,7 @@ const ProductPanel = ({ product }) => {
           </div>
           <Paragraph>{quantity * product.cash} PLN</Paragraph>
         </QuantityWrapper>
-        <Button>Dodaj do koszyka</Button>
+        <Button onClick={handeAddProductToBasket}>Dodaj do koszyka</Button>
       </SectionWrapper>
     </Wrapper>
   );
