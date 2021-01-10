@@ -75,7 +75,7 @@ const Nav = () => {
       </LinkWrapper>
       <IconLinkWrapper>
         <Link to="/api/worker">Panel Admina</Link>
-        <LinkIcon to="/shoppingList" icon="card">
+        <LinkIcon to="/basket" icon="card">
           Lista zakupów
         </LinkIcon>
         <LinkIcon to="/login">Zaloguj</LinkIcon>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -21,6 +21,7 @@ const AddItemPage = () => {
   const [inputName, setInputName] = useState("");
   const [inputNumber, setInputNumber] = useState(0);
   const [inputType, setInputType] = useState("");
+  const [categoriesList, setCategoriesList] = useState("");
   const [imageID, setImageID] = useState("");
   const [sizeS, setSizeS] = useState(0);
   const [sizeXS, setSizeXS] = useState(0);
@@ -70,6 +71,20 @@ const AddItemPage = () => {
     console.log(item);
   };
 
+  useEffect(() => {
+    axios
+      .get(`${server}/categories/`)
+      .then(function (response) {
+        setCategoriesList(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }, []);
+
   return (
     <MainTemplate>
       <Paragraph size="l">Dodaj nowy przedmiot</Paragraph>
@@ -87,12 +102,16 @@ const AddItemPage = () => {
             value={inputNumber}
             fnEdit={setInputNumber}
           />
-          <Input
-            type="text"
-            title="Typ"
-            value={inputType}
-            fnEdit={setInputType}
-          />
+          <div>
+            <label for="cat">Kategoria:</label>
+
+            <select name="cat" id="cat">
+              {categoriesList.length > 0 &&
+                categoriesList.map(({ name, _pl }) => (
+                  <option value={name}>{_pl}</option>
+                ))}
+            </select>
+          </div>
           <UploadImage fnEdit={setImageID} title="Zdjęcie główne" />
           <Paragraph>Rozmiary</Paragraph>
           <ChooseQuality title="S" value={sizeS} fnEdit={setSizeS} />

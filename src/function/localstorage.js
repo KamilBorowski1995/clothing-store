@@ -15,7 +15,9 @@ export const localstorageFunction = {
     localStorage.setItem(title, JSON.stringify(item));
   },
   get(title) {
-    localStorage.getItem(title);
+    let array = localStorage.getItem(title);
+    array = JSON.parse(array);
+    return array;
   },
   async add(title, id, amount, sizeNumber) {
     let array = localStorage.getItem(title);

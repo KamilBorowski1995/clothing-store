@@ -7,7 +7,11 @@ import ShopItemListPage from "pages/ShopItemListPage";
 import ItemPage from "pages/ItemPage";
 import ApiWorker from "pages/ApiWorker";
 import AddItemPage from "pages/AddItemPage";
+import BasketPage from "pages/BasketPage";
+
 import { localstorageFunction } from "function/localstorage";
+
+import LoginPage from "pages/LoginPage";
 
 function App() {
   useEffect(() => {
@@ -22,6 +26,9 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop/:type" component={ShopItemListPage} />
         <Route exact path="/shop/:type/:id" component={ItemPage} />
+        <Route exact path="/basket" component={BasketPage} />
+
+        <Route exact path="/login" component={LoginPage} />
 
         <Route exact path="/api/worker" component={ApiWorker} />
         <Route exact path="/api/worker/additem" component={AddItemPage} />

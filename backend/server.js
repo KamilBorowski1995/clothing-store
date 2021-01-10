@@ -8,6 +8,7 @@ const cors = require("cors");
 dotenv.config();
 
 const productsRoute = require("./routes/products");
+const categoriesRoute = require("./routes/categories");
 
 mongoose.connect(
   process.env.DB_CONNECT,
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 
 app.use("/api/products", productsRoute);
+app.use("/api/categories", categoriesRoute);
 
 const PORT = 5000;
 
